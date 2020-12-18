@@ -4,6 +4,7 @@ Image file save utilities
 
 import os
 import re
+from PIL import BmpImagePlugin
 
 
 def get_next_filename(base_path: str = "saved_images/"):
@@ -26,3 +27,14 @@ def get_next_filename(base_path: str = "saved_images/"):
         next_file_number_str = "0" + next_file_number_str
 
     return base_path + "IMG_" + next_file_number_str + ".jpg"
+
+
+def save_image(image: BmpImagePlugin.BmpImageFile, file_path: str):
+    """
+    Saves the image to the specified location on disk
+    :param image: the image to save
+    :param file_path: the file path to save the image to
+    :return: None
+    """
+
+    image.save(file_path)
