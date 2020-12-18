@@ -133,6 +133,6 @@ dmypy.json
 .idea/
 .idea
 
-saved_images/*
-
 test.py
+
+/saved_images/*
