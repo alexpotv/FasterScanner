@@ -130,4 +130,5 @@ dmypy.json
 
 # PyCharm files
 .idea/*
+.idea/
 .idea
