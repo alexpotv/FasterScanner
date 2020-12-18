@@ -132,3 +132,7 @@ dmypy.json
 .idea/*
 .idea/
 .idea
+
+saved_images/*
+
+test.py
