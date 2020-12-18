@@ -1,5 +1,7 @@
 from scanutils.scanutils import *
 
+SAVE_PATH = "/saved_images/"
+
 print("Listing devices:\n" + str(list_devices()))
 
 print("Scanning using first device")
