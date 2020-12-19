@@ -1,5 +1,7 @@
 from unittest import TestCase
 from saveutils.saveutils import *
+from metadatautils.metadatautils import build_exif_bytes
+from datetime import datetime
 import os
 from pathlib import Path
 from PIL import Image
@@ -9,7 +11,7 @@ BASE_PATH = "temp_test/"
 
 
 class TestGetNextFilename(TestCase):
-    def test_get_next_filename(self):
+    def test_get_next_filename_0(self):
         # Creating the test directory environment under BASE_PATH
         try:
             os.mkdir(BASE_PATH)
@@ -57,9 +59,20 @@ class TestSaveImage(TestCase):
         except OSError:
             pass
 
-    def test_save_image(self):
-        image = Image.new('RGB', (1,1), 0)
+    def test_save_image_0(self):
+        image = Image.new('RGB', (1, 1), 0)
         save_image(image, get_next_filename(BASE_PATH), None)
+        self.assertTrue(os.path.exists(BASE_PATH + "IMG_00000.jpg"))
+
+    def test_save_image_1(self):
+        METADATA_DICT = {
+            "Datetime": datetime(2000, 5, 23, 12, 0, 0),
+            "ImageDescription": "Insert description here",
+            "Orientation": 1
+        }
+        image = Image.new('RGB', (1, 1), 0)
+        metadata = build_exif_bytes(METADATA_DICT)
+        save_image(image, get_next_filename(BASE_PATH), metadata)
         self.assertTrue(os.path.exists(BASE_PATH + "IMG_00000.jpg"))
 
     def tearDown(self) -> None:
