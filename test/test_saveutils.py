@@ -13,10 +13,7 @@ BASE_PATH = "temp_test/"
 class TestGetNextFilename(TestCase):
     def test_get_next_filename_0(self):
         # Creating the test directory environment under BASE_PATH
-        try:
-            os.mkdir(BASE_PATH)
-        except OSError:
-            self.fail("An exception was raised while creating the test environment.")
+        os.mkdir(BASE_PATH)
 
         self.assertEqual(get_next_filename(BASE_PATH), BASE_PATH + "IMG_00000.jpg", "Case: empty directory")
 
@@ -28,16 +25,11 @@ class TestGetNextFilename(TestCase):
         Path(BASE_PATH + "IMG_00000.jpg").touch()
         Path(BASE_PATH + "RandomFile1.jpg").touch()
         Path(BASE_PATH + "RandomFile2.txt").touch()
-        if not os.path.exists(BASE_PATH + "IMG_00000.jpg") and os.path.exists(
-                BASE_PATH + "RandomFile1.jpg") and os.path.exists(BASE_PATH + "RandomFile2.txt"):
-            self.fail("An exception was raised while creating the test environment.")
 
         self.assertEqual(get_next_filename(BASE_PATH), BASE_PATH + "IMG_00001.jpg", "Case: one image file already present")
 
         # Adding a random-numbered image file to the test directory
         Path(BASE_PATH + "IMG_00122.jpg").touch()
-        if not os.path.exists(BASE_PATH + "IMG_00122.jpg"):
-            self.fail("An exception was raised while creating the test environment.")
 
         self.assertEqual(get_next_filename(BASE_PATH), BASE_PATH + "IMG_00123.jpg", "Case: directory with non-continuous file numbers")
 
@@ -54,10 +46,7 @@ class TestGetNextFilename(TestCase):
 
 class TestSaveImage(TestCase):
     def setUp(self) -> None:
-        try:
-            os.mkdir(BASE_PATH)
-        except OSError:
-            pass
+        os.mkdir(BASE_PATH)
 
     def test_save_image_0(self):
         image = Image.new('RGB', (1, 1), 0)
@@ -76,9 +65,5 @@ class TestSaveImage(TestCase):
         self.assertTrue(os.path.exists(BASE_PATH + "IMG_00000.jpg"))
 
     def tearDown(self) -> None:
-        try:
-            os.remove(BASE_PATH + "IMG_00000.jpg")
-            os.rmdir(BASE_PATH)
-        except OSError:
-            pass
-
+        os.remove(BASE_PATH + "IMG_00000.jpg")
+        os.rmdir(BASE_PATH)
