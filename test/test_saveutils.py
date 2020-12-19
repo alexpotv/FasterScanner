@@ -1,5 +1,5 @@
 from unittest import TestCase
-from .saveutils import *
+from saveutils.saveutils import *
 import os
 from pathlib import Path
 
