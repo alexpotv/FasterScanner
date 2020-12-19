@@ -1,0 +1,13 @@
+env:
+  global:
+    secure: b78Lpdo0uwpPrVTo6DEa//G6KQSUwxUGmE4c0+OrQFsjMnupF/ralOGssVItMOm4m3Oqln3l8LL95SpS7j1fkUM7C8NTU9LxOzxtBHItzlChTnaBr1sJtQsDvSVX7035csCL2GgNjilXHqhRldw9n3aB4cXL1P7pZsSjOspzfTAE4yaL8TKZ+d6R17XF4nPeIDbeBl0vCAHuPuk7LpRuYrv8X2g/M3ebWdhjGvGPUQV6xFDRdlDN7V8F1X2XKkzNztnGoX0+wHGYfuuaadgDE+T6mHVvclfXm2NtnUT/ymIDU2W7IS9jnlo8EW64Wv3pmzKYeUSv/2PFRWmGAQ34ssucAmzR66NrCBfFMcSTd4TnmPW7JiUdnqNKnUxE3TsP+gW4WEZLdTWDwK9NHJMDAPC+uVAZrT+eZUCSbc5N0j4Rm7B9tOyoZXThYrqkhmtFAlNRRprOI8P1hWltVYoNgChxJxNC20DA42R9NR9+UTQz7rFVtKGh2aA10ZKmdCNHBv3UcQcuxTUJkIz5cqQrsNoy99gsUFeg5k82rf84VfUXpPX2MS/C8olgtwNTawCc7v3ZRi85KeEdMZ5h+ZkcXenaC27Jfni8vAHXadYvQI5e3aN1CZsShsqF/dr/dVuFHCVgy6ZgjvBfzmBklczhT9eTB/vYX8DEb/23CXXcrGE=
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -r requirements.txt
+  - pip install coverage
+script:
+  - coverage run -m unittest discover
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

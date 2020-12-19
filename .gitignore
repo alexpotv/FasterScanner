@@ -136,3 +136,4 @@ dmypy.json
 test.py
 
 /saved_images/*
+/temp_test/*
