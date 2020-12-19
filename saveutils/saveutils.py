@@ -16,6 +16,11 @@ def get_next_filename(base_path: str = "saved_images/"):
 
     # Listing files matching IMG_XXXXX.jpg pattern
     file_nums = [x.split('_')[-1] for x in os.listdir(base_path) if re.match(r"IMG_[0-9]{5}\.jpg", x)]
+
+    # If no files matching the pattern are present
+    if len(file_nums) == 0:
+        return base_path + "IMG_00000.jpg"
+
     # Keeping only image file number
     file_nums = [x.split('.')[0] for x in file_nums]
     # Casting list elements to integer
