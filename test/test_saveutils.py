@@ -2,12 +2,13 @@ from unittest import TestCase
 from saveutils.saveutils import *
 import os
 from pathlib import Path
+from PIL import Image
 
 
 BASE_PATH = "temp_test/"
 
 
-class Test(TestCase):
+class TestGetNextFilename(TestCase):
     def test_get_next_filename(self):
         # Creating the test directory environment under BASE_PATH
         try:
@@ -47,3 +48,24 @@ class Test(TestCase):
         os.remove(BASE_PATH + "RandomFile1.jpg")
         os.remove(BASE_PATH + "RandomFile2.txt")
         os.rmdir(BASE_PATH)
+
+
+class TestSaveImage(TestCase):
+    def setUp(self) -> None:
+        try:
+            os.mkdir(BASE_PATH)
+        except OSError:
+            pass
+
+    def test_save_image(self):
+        image = Image.new('RGB', (1,1), 0)
+        save_image(image, get_next_filename(BASE_PATH), None)
+        self.assertTrue(os.path.exists(BASE_PATH + "IMG_00000.jpg"))
+
+    def tearDown(self) -> None:
+        try:
+            os.remove(BASE_PATH + "IMG_00000.jpg")
+            os.rmdir(BASE_PATH)
+        except OSError:
+            pass
+
