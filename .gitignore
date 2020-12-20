@@ -133,7 +133,7 @@ dmypy.json
 .idea/
 .idea
 
-test.py
+messaround.py
 
 /saved_images/*
 /temp_test/*
