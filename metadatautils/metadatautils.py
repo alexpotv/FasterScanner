@@ -25,12 +25,8 @@ def build_exif_bytes(metadata: dict):
         piexif.ExifIFD.DateTimeOriginal: timestamp.strftime(timestamp_format)
     }
     gps_ifd = {}
-    first_ifd = {
-        piexif.ImageIFD.ImageDescription: metadata["ImageDescription"],
-        piexif.ImageIFD.Orientation: metadata["Orientation"],
-        piexif.ImageIFD.Software: u"FasterScanner",
-        piexif.ImageIFD.DateTime: timestamp.strftime(timestamp_format)
-    }
+
+    first_ifd = {}
 
     exif_dict = {"0th": zeroth_ifd, "Exif": exif_ifd, "GPS": gps_ifd, "1st": first_ifd, "thumbnail": None}
     exif_bytes = piexif.dump(exif_dict)
