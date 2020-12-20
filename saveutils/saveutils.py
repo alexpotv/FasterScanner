@@ -34,12 +34,15 @@ def get_next_filename(base_path: str = "saved_images/"):
     return base_path + "IMG_" + next_file_number_str + ".jpg"
 
 
-def save_image(image: BmpImagePlugin.BmpImageFile, file_path: str, exif_bytes: str):
+def save_image(image: BmpImagePlugin.BmpImageFile, file_path: str, exif_bytes = None):
     """
     Saves the image to the specified location on disk
+    :param exif_bytes: The EXIF data bytes to write to the image
     :param image: the image to save
     :param file_path: the file path to save the image to
     :return: None
     """
-
-    image.save(file_path, exif=exif_bytes)
+    if exif_bytes:
+        image.save(file_path, exif=exif_bytes)
+    else:
+        image.save(file_path)
