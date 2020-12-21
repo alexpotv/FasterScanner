@@ -1,6 +1,6 @@
 from unittest import TestCase
-from saveutils.saveutils import *
-from metadatautils.metadatautils import build_exif_bytes
+from utilities.saveutils import *
+from utilities.metadatautils import build_exif_bytes
 from datetime import datetime
 import os
 from pathlib import Path
