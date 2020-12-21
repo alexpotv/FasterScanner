@@ -2,7 +2,7 @@ from unittest import TestCase
 import os
 from datetime import datetime
 from PIL import Image
-from metadatautils.metadatautils import build_exif_bytes
+from utilities.metadatautils import build_exif_bytes
 import piexif
 
 # Defining constants for file paths and names

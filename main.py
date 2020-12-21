@@ -1,6 +1,6 @@
-from scanutils.scanutils import *
-from saveutils.saveutils import *
-from metadatautils.metadatautils import *
+from utilities.scanutils import ScanSession
+from utilities.saveutils import *
+from utilities.metadatautils import *
 from datetime import datetime
 
 SAVE_PATH = "saved_images/"
@@ -11,14 +11,21 @@ METADATA_DICT = {
     "Orientation": 1
 }
 
-print("Listing devices:\n" + str(list_devices()))
+# Initializing scan session
+scan_sess = ScanSession()
+
+print("Listing devices:\n" + str(scan_sess.get_available_devices()))
 
 print("Scanning using first device")
 
-image = scan_image(list_devices()[0], 300)
+scan_sess.select_device_index()
+
+scan_sess.virtual_scan_image()
 
 print("Image scanned")
 
-save_image(image, get_next_filename(), build_exif_bytes(METADATA_DICT))
+img = scan_sess.get_image()
+
+save_image(img, get_next_filename(), build_exif_bytes(METADATA_DICT))
 
 print("Image saved")
