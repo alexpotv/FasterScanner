@@ -5,6 +5,7 @@ from PIL import Image
 from utilities.metadatautils import EXIFWriter
 import piexif
 
+
 # Defining constants for file paths and names
 BASEPATH = "test_temp/"
 FILENAME = "IMG_TEST.jpg"
