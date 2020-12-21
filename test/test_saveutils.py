@@ -5,7 +5,6 @@ from datetime import datetime
 import os
 from pathlib import Path
 from PIL import Image
-import piexif
 
 
 BASE_PATH = "temp_test/"
