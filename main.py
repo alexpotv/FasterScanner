@@ -20,12 +20,14 @@ print("Scanning using first device")
 
 scan_sess.select_device_index()
 
-scan_sess.virtual_scan_image()
+scan_sess.scan_image()
 
 print("Image scanned")
 
 img = scan_sess.get_image()
 
-save_image(img, get_next_filename(), build_exif_bytes(METADATA_DICT))
+writer = EXIFWriter(datetime(2000, 5, 23, 12, 0, 0), "Description", 1)
+
+save_image(img, get_next_filename(), writer.build_exif_bytes())
 
 print("Image saved")
