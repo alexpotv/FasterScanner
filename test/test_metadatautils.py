@@ -3,22 +3,15 @@ import os
 from datetime import datetime
 from PIL import Image
 from utilities.metadatautils import EXIFWriter
+from utilities.utilitiesExceptions.metadataExceptions import *
 import piexif
-
 
 # Defining constants for file paths and names
 BASEPATH = "test_temp/"
 FILENAME = "IMG_TEST.jpg"
 
-# Defining constant dictionary of metadata
-METADATA_DICT = {
-    "Datetime": datetime(2000, 1, 1, 12, 0, 0),
-    "ImageDescription": "Test description",
-    "Orientation": 1
-}
 
-
-class Test(TestCase):
+class Test0(TestCase):
 
     def setUp(self) -> None:
         # Creating temporary working directory
@@ -51,3 +44,10 @@ class Test(TestCase):
 
         # Removing working directory
         os.rmdir(BASEPATH)
+
+
+class Test1(TestCase):
+    def test_build_exif_bytes_1(self):
+        # Instantiating incorrect writer
+        with self.assertRaises(InvalidOrientation):
+            writer = EXIFWriter(datetime(2000, 5, 23, 23, 54, 0), "Test description", 10)
