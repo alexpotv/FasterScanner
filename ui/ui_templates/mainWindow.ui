@@ -25,49 +25,97 @@
         <widget class="QWidget" name="dataEditor" native="true">
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QLabel" name="datetimeLabel">
+           <widget class="QLabel" name="dataEditorTitle">
             <property name="text">
-             <string>Date and time of capture</string>
+             <string>Metadata</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QDateTimeEdit" name="datetimeEdit"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="imageDescriptionLabel">
-            <property name="text">
-             <string>Image description</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPlainTextEdit" name="imageDescriptionEdit"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="orientationLabel">
-            <property name="text">
-             <string>Orientation</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="orientationEditWidget" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QPushButton" name="orientationLeftButton">
+           <widget class="QWidget" name="dataEditorFields" native="true">
+            <layout class="QFormLayout" name="formLayout">
+             <item row="1" column="1">
+              <widget class="QDateEdit" name="dateField"/>
+             </item>
+             <item row="3" column="1">
+              <widget class="QTimeEdit" name="timeField"/>
+             </item>
+             <item row="5" column="1">
+              <widget class="QPlainTextEdit" name="imageDescriptionField"/>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="dateLabel">
                <property name="text">
-                <string>Rotate left</string>
+                <string>Date</string>
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="orientationRightButton">
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="saveDateMetadata">
                <property name="text">
-                <string>Rotate right</string>
+                <string>Save date metadata</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="timeLabel">
+               <property name="text">
+                <string>Time</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QCheckBox" name="saveTimeMetadata">
+               <property name="text">
+                <string>Save time metadata</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="imageDescriptionLabel">
+               <property name="text">
+                <string>Description</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QCheckBox" name="saveImageDescriptionMetadata">
+               <property name="text">
+                <string>Save image description metadata</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QWidget" name="orientationSwitchWidget" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QPushButton" name="rotateLeft">
+                  <property name="text">
+                   <string>Rotate counter-clockwise</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="rotateRight">
+                  <property name="text">
+                   <string>Rotate clockwise</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QCheckBox" name="saveOrientationMetadata">
+               <property name="text">
+                <string>Save orientation metadata</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="orientationLabel">
+               <property name="text">
+                <string>Orientation</string>
                </property>
               </widget>
              </item>
@@ -81,7 +129,14 @@
         <widget class="QWidget" name="imageViewer" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QGraphicsView" name="currentImage"/>
+           <widget class="QGraphicsView" name="currentImage">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -97,34 +152,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QScrollArea" name="directoryView">
-            <property name="widgetResizable">
-             <bool>true</bool>
-            </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>206</width>
-               <height>493</height>
-              </rect>
-             </property>
-             <widget class="QScrollBar" name="verticalScrollBar">
-              <property name="geometry">
-               <rect>
-                <x>340</x>
-                <y>0</y>
-                <width>16</width>
-                <height>491</height>
-               </rect>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </widget>
-           </widget>
+           <widget class="QListView" name="listView"/>
           </item>
          </layout>
         </widget>
